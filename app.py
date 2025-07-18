@@ -19,20 +19,27 @@ if "lat" not in st.session_state:
 col1, col2 = st.columns([1,5])
 
 with col2:
+    with st.expander("Jak używać aplikacji?"):
+        st.markdown("""
+        1. Kliknij na mapie, aby wybrać lokalizację.
+        2. Wprowadź dane mieszkania poniżej.
+        3. Wynik pojawi się w okienku poniżej. <br>
+        Model powstał na podstawie danych z [okna-bej.github.io](https://okna-bej.github.io) oraz
+        [Dane i Analizy (prokulski.science)](https://prokulski.science/).
+        """, unsafe_allow_html=True)
     display_map()
 
 with col1:
-    st.write(f"Latitude: {st.session_state.clicked_lat :.4f}")
-    st.write(f"Longitude: {st.session_state.clicked_lon :.4f}")
+
+    st.write(f"Lokalizacja: {st.session_state.clicked_lat :.4f}, {st.session_state.clicked_lon :.4f}")
     st.session_state.area = st.number_input("Powierzchnia mieszkania (m²)", min_value=1, max_value=500, value=40)
-    st.session_state.balcony = st.selectbox("Balkon", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
     st.session_state.floor = st.number_input("Piętro", min_value=0, max_value=100, value=0)
     st.session_state.floor_max = st.number_input("Liczba pięter w budynku", min_value=0, max_value=100, value=0)
     st.session_state.floors = st.number_input("Liczba pięter w mieszkaniu", min_value=0, max_value=100, value=0)
-
-    st.session_state.garden = st.selectbox("Ogród", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie")
-    st.session_state.loggia = st.selectbox("Loggia", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie")
-    st.session_state.terrace = st.selectbox("Taras", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie")
+    st.session_state.balcony = st.selectbox("Balkon", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
+    st.session_state.garden = st.selectbox("Ogród", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
+    st.session_state.loggia = st.selectbox("Loggia", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
+    st.session_state.terrace = st.selectbox("Taras", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
     data["user_entry"] = {
     "lng": st.session_state.clicked_lon,
     "lat": st.session_state.clicked_lat,
