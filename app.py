@@ -24,42 +24,42 @@ with col2:
         1. Kliknij na mapie, aby wybrać lokalizację.
         2. Wprowadź dane mieszkania.
         3. Wynik pojawi się w okienku. <br>
-        Cena została oszacowana na podstawie analizy danych historycznych dotyczących transakcji mieszkań.
+        Cena została oszacowana na podstawie analizy danych historycznych dotyczących transakcji mieszkań. <br>
         Model powstał na podstawie danych z [okna-bej.github.io](https://okna-bej.github.io) oraz
         [Dane i Analizy (prokulski.science)](https://prokulski.science/).
         """, unsafe_allow_html=True)
     display_map()
 
 with col1:
-
-    st.write(f"Lokalizacja: {st.session_state.clicked_lat :.4f}, {st.session_state.clicked_lon :.4f}")
-    st.session_state.area = st.number_input("Powierzchnia mieszkania (m²)", min_value=1, max_value=500, value=40)
-    st.session_state.floor = st.number_input("Piętro", min_value=0, max_value=100, value=0)
-    st.session_state.floor_max = st.number_input("Liczba pięter w budynku", min_value=0, max_value=100, value=0)
-    st.session_state.floors = st.number_input("Liczba pięter w mieszkaniu", min_value=0, max_value=100, value=0)
-    st.session_state.balcony = st.selectbox("Balkon", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
-    st.session_state.garden = st.selectbox("Ogród", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
-    st.session_state.loggia = st.selectbox("Loggia", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
-    st.session_state.terrace = st.selectbox("Taras", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
-    data["user_entry"] = {
-    "lng": st.session_state.clicked_lon,
-    "lat": st.session_state.clicked_lat,
-    "area": st.session_state.area,
-    "balcony": st.session_state.balcony,
-    "floor": st.session_state.floor,
-    "floor_max": st.session_state.floor_max,
-    "floors": st.session_state.floors,
-    "garden": st.session_state.garden,
-    "loggia": st.session_state.loggia,
-    "terrace": st.session_state.terrace,
-    }
+    with st.expander("Rozwiń, by wpisać parametry mieszkania"):
+        st.write(f"Lokalizacja: {st.session_state.clicked_lat :.4f}, {st.session_state.clicked_lon :.4f}")
+        st.session_state.area = st.number_input("Powierzchnia mieszkania (m²)", min_value=1, max_value=500, value=40)
+        st.session_state.floor = st.number_input("Piętro", min_value=0, max_value=100, value=0)
+        st.session_state.floor_max = st.number_input("Liczba pięter w budynku", min_value=0, max_value=100, value=0)
+        st.session_state.floors = st.number_input("Liczba pięter w mieszkaniu", min_value=0, max_value=100, value=0)
+        st.session_state.balcony = st.selectbox("Balkon", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
+        st.session_state.garden = st.selectbox("Ogród", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
+        st.session_state.loggia = st.selectbox("Loggia", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
+        st.session_state.terrace = st.selectbox("Taras", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
+        data["user_entry"] = {
+        "lng": st.session_state.clicked_lon,
+        "lat": st.session_state.clicked_lat,
+        "area": st.session_state.area,
+        "balcony": st.session_state.balcony,
+        "floor": st.session_state.floor,
+        "floor_max": st.session_state.floor_max,
+        "floors": st.session_state.floors,
+        "garden": st.session_state.garden,
+        "loggia": st.session_state.loggia,
+        "terrace": st.session_state.terrace,
+        }
 
     price_m2_lower, price_m2_upper, price_total_lower, price_total_upper = calculate_price(data)
     st.markdown(
         f"""
         <div style="padding: 1em; border-radius: 8px; background-color: #f0f2f6; border-left: 8px solid #4CAF50;">
-            <h7 style="color: #4CAF50;">💰 Cena za m²: <span style="font-weight: bold;">{price_m2_lower:,.2f} - {price_m2_upper:,.2f} zł <br></span></h7>
-            <h7 style="color: #2196F3;">🏠 Cena całkowita: <span style="font-weight: bold;">{price_total_lower:,.2f} - {price_total_upper:,.2f} zł</span></h7>
+            <h7 style="color: #4CAF50;">💰 Cena za m²: <span style="font-weight: bold;">{price_m2_lower:,.0f} - {price_m2_upper:,.0f} zł <br></span></h7>
+            <h7 style="color: #2196F3;">🏠 Cena całkowita: <span style="font-weight: bold;">{price_total_lower:,.0f} - {price_total_upper:,.0f} zł</span></h7>
         </div>
         """,
         unsafe_allow_html=True
