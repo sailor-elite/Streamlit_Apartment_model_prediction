@@ -22,8 +22,9 @@ with col2:
     with st.expander("Jak używać aplikacji?"):
         st.markdown("""
         1. Kliknij na mapie, aby wybrać lokalizację.
-        2. Wprowadź dane mieszkania poniżej.
-        3. Wynik pojawi się w okienku poniżej. <br>
+        2. Wprowadź dane mieszkania.
+        3. Wynik pojawi się w okienku. <br>
+        Cena została oszacowana na podstawie analizy danych historycznych dotyczących transakcji mieszkań.
         Model powstał na podstawie danych z [okna-bej.github.io](https://okna-bej.github.io) oraz
         [Dane i Analizy (prokulski.science)](https://prokulski.science/).
         """, unsafe_allow_html=True)
