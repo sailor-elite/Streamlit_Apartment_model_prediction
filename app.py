@@ -54,12 +54,12 @@ with col1:
         "terrace": st.session_state.terrace,
         }
 
-    price_m2_lower, price_m2_upper, price_total_lower, price_total_upper = calculate_price(data)
+    st.session_state.price_m2_lower, st.session_state.price_m2_upper, st.session_state.price_total_lower, st.session_state.price_total_upper = calculate_price(data)
     st.markdown(
         f"""
         <div style="padding: 1em; border-radius: 8px; background-color: #f0f2f6; border-left: 8px solid #4CAF50;">
-            <h7 style="color: #4CAF50;">💰 Cena za m²: <span style="font-weight: bold;">{price_m2_lower:,.0f} - {price_m2_upper:,.0f} zł <br></span></h7>
-            <h7 style="color: #2196F3;">🏠 Cena całkowita: <span style="font-weight: bold;">{price_total_lower:,.0f} - {price_total_upper:,.0f} zł</span></h7>
+            <h7 style="color: #4CAF50;">💰 Cena za m²: <span style="font-weight: bold;">{st.session_state.price_m2_lower:,.0f} - {st.session_state.price_m2_upper:,.0f} zł <br></span></h7>
+            <h7 style="color: #2196F3;">🏠 Cena całkowita: <span style="font-weight: bold;">{st.session_state.price_total_lower:,.0f} - {st.session_state.price_total_upper:,.0f} zł</span></h7>
         </div>
         """,
         unsafe_allow_html=True
