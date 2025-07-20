@@ -42,6 +42,11 @@ def get_gus_data(map_df, teryt):
         }
 
 def calculate_price(data):
+    """
+    Calculating price based on user input.
+    :param data: user input
+    :return price_m2_lower, price_m2_upper, price_total_lower, price_total_upper: lower and upper bounds of price per m2 and total
+    """
     data["user_entry"]["top_floor"] = 1 if data["user_entry"]["floor"] == data["user_entry"]["floor_max"] else 0
     data["user_entry"]["has_loggia"] = 1 if data["user_entry"]["loggia"] > 0 else 0
     data["user_entry"]["has_terrace"] = 1 if data["user_entry"]["terrace"] > 0 else 0
