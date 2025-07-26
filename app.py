@@ -25,7 +25,7 @@ with col2:
         2. Wprowadź dane mieszkania.
         3. Wynik pojawi się w okienku. <br>
         Cena została oszacowana na podstawie analizy danych historycznych dotyczących transakcji mieszkań. <br>
-        Model powstał na podstawie danych z [okna-bej.github.io](https://okna-bej.github.io) oraz
+        Model powstał na podstawie danych z [okna-bej.github.io](https://okna-bej.github.io/mieszkanka/) oraz
         [Dane i Analizy (prokulski.science)](https://prokulski.science/).
         """, unsafe_allow_html=True)
     display_map()
@@ -34,9 +34,13 @@ with col1:
     with st.expander("Rozwiń, by wpisać parametry mieszkania"):
         st.write(f"Lokalizacja: {st.session_state.clicked_lat :.4f}, {st.session_state.clicked_lon :.4f}")
         st.session_state.area = st.number_input("Powierzchnia mieszkania (m²)", min_value=1, max_value=500, value=40)
-        st.session_state.floor = st.number_input("Piętro", min_value=0, max_value=100, value=0)
         st.session_state.floor_max = st.number_input("Liczba pięter w budynku", min_value=0, max_value=100, value=0)
-        st.session_state.floors = st.number_input("Liczba pięter w mieszkaniu", min_value=0, max_value=100, value=0)
+        if "floor" not in st.session_state:
+            st.session_state.floor = 0
+        st.session_state.floor = st.number_input("Piętro, na którym znajduje się mieszkanie", min_value=0, max_value=st.session_state.floor_max, value=st.session_state.floor)
+        if "floors" not in st.session_state:
+            st.session_state.floors = 0
+        st.session_state.floors = st.number_input("Liczba kondygnacji (budynku/mieszkania)", min_value=0, max_value=st.session_state.floor_max, value=st.session_state.floors)
         st.session_state.balcony = st.selectbox("Balkon", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
         st.session_state.garden = st.selectbox("Ogród", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
         st.session_state.loggia = st.selectbox("Loggia", options=[0, 1], format_func=lambda x: "Tak" if x else "Nie", index=0)
