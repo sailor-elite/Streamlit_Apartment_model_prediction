@@ -12,11 +12,11 @@ Locally through Streamlit:
 Docker:
 
 ``
-docker build -t app_name
+docker build -t app_name .
 ``
 
 ``
-docker run -p 8501:8501 app_name
+docker run -p 80:8501 app_name
 ``
 
 # Screenshots:
