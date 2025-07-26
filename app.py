@@ -4,7 +4,7 @@ import joblib
 from price_calculation import calculate_price
 
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title="Nie przepłacaj! - porównaj ceny mieszkań w twojej okolicy", page_icon = "data/favicon.ico")
 data = {"model": joblib.load("model/06-25_model_all.pkl")}
 
 
