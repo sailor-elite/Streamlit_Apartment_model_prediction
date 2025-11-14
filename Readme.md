@@ -1,6 +1,6 @@
 # App for apartment price prediction
 
-An application (temporary link: https://nieprzeplacaj.streamlit.app/) for apartment price prediction based on user input.
+An application (link: https://nieprzeplac.bieda.it/) for apartment price prediction based on user input.
 
 # How to run
 
